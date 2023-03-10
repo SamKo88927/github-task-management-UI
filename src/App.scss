@@ -1,0 +1,17 @@
+
+// Define styles for the main content area
+.app {
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+:root{
+  --background-color: #181818;
+  --background-secoudary-color: #24292e;
+  --text-color: #e1e4e8;
+  --link-color: #0366d6;
+  --border-color: #e1e4e8;
+  --header-background-color: #24292e;
+  --header-text-color: #ffffff;
+}

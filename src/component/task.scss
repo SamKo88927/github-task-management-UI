@@ -1,0 +1,72 @@
+.task {
+    &-container {
+        background-color: #24292e;
+        color: #fff;
+        padding: 16px;
+        border-radius: 4px;
+    }
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        img{
+
+            border-radius: 50%;
+            height: 36px;
+        }
+    }
+    &-title {
+        margin-left: 15px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    &-status {
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    &-body {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+    &-actions {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+        .popup-setting {
+            position: absolute;
+            top: 30px;
+            background-color: var(--background-color);
+            padding: 10px;
+            border-radius: 5px;
+            button {
+                width: 100%;
+                display: flex;
+                gap: 15px;
+                border: none;
+                color: var(--text-color);
+                font-size: 10px;
+                &:hover {
+                    background-color: var(--background-secoudary-color);
+                }
+            }
+            .delete-button{
+                color:rgb(192, 1, 1);
+            }
+        }   
+        button {
+            background-color: transparent;
+            color: var(--link-color);
+            padding: 8px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            &:hover {
+                background-color: var(--background-color);
+            }
+        }
+    }
+}
