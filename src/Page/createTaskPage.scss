@@ -1,0 +1,52 @@
+.createTaskPage {
+    display: flex;
+    .left {
+        display: flex;
+       align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    .right {
+    padding:20px 0px; 
+    }
+    .MuiInput-outlined:focus-visible {
+        border: none;
+    }
+    .MuiOutlinedInput-root {
+        & fieldset {
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.439);
+        }
+        &.Mui-focused fieldset {
+            border: 1px solid #3d5afe;
+        }
+    }
+    .MuiInputBase-input {
+        color: white;
+        animation: blink 1s infinite;
+    }
+    .MuiInputLabel-root {
+        color: #fff; // for lable color
+    }
+    
+    // 輸入框樣式
+    .labels-input {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: #000;
+        color: white;
+        margin-bottom: 1rem;
+        &:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+    }
+    .errorMassage{
+        color: red;
+    }
+}

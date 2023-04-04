@@ -1,26 +1,27 @@
-import React from 'react'
-import { TextField,Select,FormControl,MenuItem,InputLabel, makeStyles  }from '@material-ui/core';
+import { TextField, Select, MenuItem, InputLabel, Button } from '@material-ui/core';
 import "./filters.scss"
-
-
+import { Link} from 'react-router-dom'
 interface FilterSortSearchProps {
-    filter: string;
-    setFilter: (filter: string|any) => void ;
-    sort: string;
-    setSort: (sort: string|any) => void;
-    search: string;
-    setSearch: (search: string) => void;
-  }
-const Filters = ({ filter, setFilter, sort, setSort, search, setSearch }:FilterSortSearchProps) => {
+  filter: string;
+  setFilter: (filter: string | any) => void;
+  sort: string;
+  setSort: (sort: string | any) => void;
+  search: string;
+  setSearch: (search: string) => void;
+}
+
+//改名叫功能bar
+
+const Filters = ({ filter, setFilter, sort, setSort, search, setSearch }: FilterSortSearchProps) => {
   return (
     <div className="filters">
       <InputLabel className='inputLabel'>Filter</InputLabel>
-       <Select
-          labelId="filter-select-label"
-          value={filter}
-          onChange={e => setFilter(e.target.value)}
-          className='filterSelect'
-        >
+      <Select
+        labelId="filter-select-label"
+        value={filter}
+        onChange={e => setFilter(e.target.value)}
+        className='filterSelect'
+      >
         <MenuItem value="All">All</MenuItem>
         <MenuItem value="Open">Open</MenuItem>
         <MenuItem value="In Progress">In Progress</MenuItem>
@@ -38,10 +39,17 @@ const Filters = ({ filter, setFilter, sort, setSort, search, setSearch }:FilterS
       </Select>
       <TextField
         id="search-input"
-        placeholder="Search Title or Body"
+        className='searchInput'
+        placeholder="Search Title or Body(below)" 
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+      
+      <Link to="/create" style={{ textDecoration: "none", color: "inherit" }}>
+        <Button variant="contained" className='filterButton' 
+        >New Issue</Button>
+        </Link>
+
     </div>
   )
 }

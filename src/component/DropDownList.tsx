@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from 'react'
+import React, { Dispatch, useContext, useState } from 'react'
 import "./dropDownList.scss"
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,18 +6,17 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
+import { LoginContext } from '../contexts/LoginContext';
+import { logout } from '../constants/actionTypes';
 interface UsersProps {
   userInfo: any,
-  setUserInfo: React.Dispatch<React.SetStateAction<any>>;
-}
-const DropDownList = ({ userInfo ,setUserInfo}: UsersProps) => {
+  // 捨棄原來的useState
+  // setUserInfo: React.Dispatch<React.SetStateAction<any>>;
+} 
+const DropDownList = ({ userInfo }: UsersProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -26,12 +25,15 @@ const DropDownList = ({ userInfo ,setUserInfo}: UsersProps) => {
   const handleClose = async () => {
     setAnchorEl(null);
   };
+  const { dispatch } = useContext(LoginContext)
   const handleLogout = async () => {
     setAnchorEl(null);
     try{
+      //清除token
       const res = await axios.get("/auth/github/logout")
-      console.log(res)
-      setUserInfo(null)
+      //清除user在context api的資料 包括localstorage
+      dispatch({type:logout,payload:null})
+      window.location.reload()
   }catch(error){
       console.log(error)
   }
@@ -68,13 +70,6 @@ const DropDownList = ({ userInfo ,setUserInfo}: UsersProps) => {
             background: "#24292e",
             border: "1px solid #e1e4e821",
             color: "#e1e4e8",
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-
-            },
             '&:before': {
               content: '""',
               display: 'block',
@@ -98,7 +93,6 @@ const DropDownList = ({ userInfo ,setUserInfo}: UsersProps) => {
           Signed in as
           <b>{userInfo.login}</b>
         </MenuItem>
-
         <Divider sx={{ border: "0.5px solid #e1e4e821", }} />
         <MenuItem  onClick={handleLogout}>
           <ListItemIcon >

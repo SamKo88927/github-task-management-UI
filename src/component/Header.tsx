@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./header.scss"
-import { useLocation } from 'react-router-dom'
-import {  api, gh_APP_ID } from '../proxy';
+import {  gh_APP_ID } from '../proxy';
 import axios from 'axios';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons/faAngleDown';
 import DropDownList from './DropDownList';
+import { Link } from 'react-router-dom';
+import { LoginContext } from '../contexts/LoginContext';
+import { login } from '../constants/actionTypes';
 const Header = () => {
-    const [code, setCode] = useState<null | string>(null);
-    const [userInfo, setUserInfo] = useState<null | any>(null);
-    const location = useLocation()
+    // const [userInfo, setUserInfo] = useState<null | any>(null);Ｆ
     const redirectUri = "http://localhost:5000/api/v1/auth/github";
     const handleLogin = () => {
         // 向 Login API 獲取授權碼
@@ -19,19 +17,9 @@ const Header = () => {
             `https://github.com/login/oauth/authorize?client_id=${gh_APP_ID}&scope=${scope}&redirect_uri=${redirectUri}&state=sam88927`
         )
     };
-
+    const { user ,dispatch } = useContext(LoginContext)
 //網站如果假冒這個 透過token去操作api 得確保說前端認證的過稱中都是完全對接的 上架後處理
    useEffect(() => {
-    const connectedBE =async () => {
-        try {
-            const  res = await axios.get("/auth")
-            console.log(res)
-        } catch (error) {
-            console.log(error)
-            
-        }
-    }
-    // connectedBE()
     const tokenVerify = async() => {
         try{
             const usr = await axios.get("/auth/github/userinfo",{
@@ -41,45 +29,34 @@ const Header = () => {
                 }
             }
             )
-            setUserInfo(usr.data)
+            dispatch({
+                type: login,
+                payload: usr.data
+            })//
         }catch(error){
             console.log(error)
         }
     }
-        tokenVerify()
+    tokenVerify()
   }, []);
-
-    //     Authorization: Bearer OAUTH-TOKEN
+    //    Authorization: Bearer OAUTH-TOKEN
     // GET https://api.github.com/user
     return (
         <header>
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="left">
                 <GitHubIcon />
                 SamKo Task Management
             </div>
+            </Link>
             <div className="right">
-                {/* <button className="buttonlink" >
-                        <TiSocialInstagram onClick={() => setClickIg(!clickIg)} />
-                        {
-                            !user &&
-                            <Link to="/login" style={{ textDecoration: "none", color: "inherit" }}>
-                                <BsPersonFill className='svg2' />
-                            </Link>
-                        }
-                        <div onClick={handleClick}>
-                            <Badge badgeContent={notificationNumber} color="secondary" >
-                                <FaShoppingBag className='svg3' onClick={() => setClickCart(!clickCart)} />
-                            </Badge>
-                        </div>
-                    </button> */}  
-                    { userInfo ?
+                    { user ?
                     <div className='userinfo'>
-                        <DropDownList userInfo={userInfo} setUserInfo={setUserInfo}/>
+                        <DropDownList userInfo={user} />
                     </div>
                     :
                         <button onClick={handleLogin}>GitHub Login</button>
                     }
-                   
             </div>
 
         </header>

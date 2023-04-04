@@ -1,26 +1,34 @@
 import { TextField } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { Dispatch, useContext, useEffect, useState } from 'react'
 import "./repoSearch.scss"
-const RepoSearch = () => {
-  const [repo, setRepo] = useState<null | string>(null);
-  const [owner, setOwner] = useState<null | string>(null);
-
+import { LoginContext } from '../contexts/LoginContext'
+interface props {
+  repoOptions: {
+    user:string,
+    repo:string
+  },
+  setRepoOptions: (value: any) => void;
+}
+const RepoSearch = ({ repoOptions, setRepoOptions }: props) => {
+  const { user, dispatch } = useContext(LoginContext)
   return (
     <div className='SearchBar'>
       <div className="tag">
         Required
       </div>
       <TextField
-        id="search-input"
+        id="user"
+        className='search-input'
         placeholder="Owner Name"
-        value={repo}
-        onChange={(e) => setRepo(e.target.value)}
-      /> /
+        value={repoOptions.user}
+        onChange={(e) => setRepoOptions((prev: any) => ({ ...prev, [e.target.id]: e.target.value }))}
+      />
       <TextField
-        id="search-input"
+        id="repo"
+        className='search-input'
         placeholder="Repo Name"
-        value={owner}
-        onChange={(e) => setOwner(e.target.value)}
+        value={repoOptions.repo}
+        onChange={(e) => setRepoOptions((prev: any) => ({ ...prev, [e.target.id]: e.target.value }))}
       />
     </div>
 

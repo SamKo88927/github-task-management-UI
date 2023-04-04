@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: start;
-
+position: relative;
     gap: 20px;
     padding: 20px 20px 20px 5px;
     .MuiInput-underline:before {
@@ -10,6 +10,10 @@
     }
     .MuiInputBase-input {
         color: white;
+
+    }
+    .searchInput{
+        width: 200px;
     }
     .MuiSelect-icon {
         color: #fff; // for icon drop down icon color
@@ -26,5 +30,9 @@
     .filterSelect {
         color: white;
         min-width: 60px;
+    }
+    .filterButton{
+        position: absolute;
+        right:0;
     }
 }
