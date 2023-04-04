@@ -1,7 +1,6 @@
 import { TextField } from '@material-ui/core'
-import React, { Dispatch, useContext, useEffect, useState } from 'react'
 import "./repoSearch.scss"
-import { LoginContext } from '../contexts/LoginContext'
+
 interface props {
   repoOptions: {
     user:string,
@@ -10,7 +9,6 @@ interface props {
   setRepoOptions: (value: any) => void;
 }
 const RepoSearch = ({ repoOptions, setRepoOptions }: props) => {
-  const { user, dispatch } = useContext(LoginContext)
   return (
     <div className='SearchBar'>
       <div className="tag">

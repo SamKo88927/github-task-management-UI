@@ -3,14 +3,12 @@ import "./taskpage.scss"
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import SettingsIcon from '@mui/icons-material/Settings';
-import { format, parseISO } from 'date-fns'
-import { motion } from "framer-motion";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons/faPenToSquare';
-import { Button, IconButton, Input, InputAdornment, OutlinedInput, TextField } from '@material-ui/core';
+import { BsPencilSquare } from "react-icons/bs";
+import { Button,  OutlinedInput} from '@material-ui/core';
 import PopUpLabels from '../component/PopUpLabels';
 import useFetch from '../hooks/useFetch';
+import { format, parseISO } from 'date-fns'
+
 const TaskPage = () => {
   const issueUrl = useLocation().state.issueUrl
   const [tasks, setTasks] = useState<any>([]);
@@ -24,7 +22,7 @@ const TaskPage = () => {
   const [openEdit, setOpenEdit] = useState(false)
   const [openEditTitle, setOpenEditTitle] = useState(false)
   const [openEditAssigned, setOpenEditAssigned] = useState(false)
-  const [openEditLabels, setOpenEditLabels] = useState(false)
+  // const [openEditLabels, setOpenEditLabels] = useState(false)
   const [content, setContent] = useState({
     own: "own",
     repo: "repo",
@@ -34,7 +32,7 @@ const TaskPage = () => {
   });
   const [errorMassage, setErrorMassage] = useState("")
   const handleSave = async (e: { currentTarget: { id: any; value: any; }; }) => {
-    try{//這邊設置try&catch是為了配合api的 body輸入限制 至少要大於30不然會回報錯誤
+    try {//這邊設置try&catch是為了配合api的 body輸入限制 至少要大於30不然會回報錯誤
       const res = await axios.post(`/auth/github/issue/updated?url=` + issueUrl, {
         [e.currentTarget.id]: e.currentTarget.value
       }
@@ -48,7 +46,7 @@ const TaskPage = () => {
       setOpenEditTitle(false)
       setOpenEdit(false)
       setErrorMassage("")
-    }catch(error: any){
+    } catch (error: any) {
       setErrorMassage(error?.response.data.message)
     }
   }
@@ -129,12 +127,12 @@ const TaskPage = () => {
           <div className="body-container">
             {
               openEdit ?
-                <textarea 
-                defaultValue={tasks?.body} 
-                className="body" id="body" 
-                placeholder='leave a comment'
-                minLength={30} // 設置最小字元數為 30
-                required // 設置必填欄位
+                <textarea
+                  defaultValue={tasks?.body}
+                  className="body" id="body"
+                  placeholder='leave a comment'
+                  minLength={30} // 設置最小字元數為 30
+                  required // 設置必填欄位
                   onChange={changeTaskBody}
                 />
                 :
@@ -144,22 +142,22 @@ const TaskPage = () => {
                   </div>
                   <div className="right">
                     <button className="edit-button" onClick={handleEdit}>
-                      <FontAwesomeIcon icon={faPenToSquare} />
+                      <BsPencilSquare />
                       EDIT
                     </button>
                   </div>
                 </>
             }
           </div>
-           <p className='errorMassage'>{errorMassage}</p> 
+          <p className='errorMassage'>{errorMassage}</p>
           {
             !openEdit ? <></> :
-            <>
-              <button value={content.body} id="body" className="submit-button" onClick={handleSave}>
-                SUBMIT
-              </button>
-              <Button variant="outlined" onClick={handleEdit}>Cancel</Button>
-            </>
+              <>
+                <button value={content.body} id="body" className="submit-button" onClick={handleSave}>
+                  SUBMIT
+                </button>
+                <Button variant="outlined" onClick={handleEdit}>Cancel</Button>
+              </>
           }
           <p>
             created at {tasks?.created_at && format(parseISO(tasks?.created_at), "yyyy / MM / dd ")}

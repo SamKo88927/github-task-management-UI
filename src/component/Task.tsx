@@ -2,15 +2,15 @@ import React, { Dispatch, SetStateAction, useMemo, useState } from 'react'
 import "./task.scss"
 import { motion } from "framer-motion";
 import { Button, IconButton } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons/faPenToSquare';
+
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import axios from 'axios';
 import { makeStyles } from "@mui/styles";
 import { Link, useNavigate } from 'react-router-dom';
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import PopUpLabels from './PopUpLabels';
+import { BsPencilSquare } from 'react-icons/bs';
+import { FaEllipsisV, FaTrashAlt} from 'react-icons/fa';
 interface props {
   number: number,
   title: string,
@@ -90,7 +90,7 @@ const Task = ({ setRefetchData, repository_url, number, title, body, state, labe
           }
         <div className="task-actions">
           <IconButton onClick={handleClick}>
-            <FontAwesomeIcon icon={faEllipsisV} />
+            <FaEllipsisV/>
           </IconButton>
           {
             openSettings &&
@@ -105,11 +105,11 @@ const Task = ({ setRefetchData, repository_url, number, title, body, state, labe
               }}
             >
               <button className="edit-button" onClick={handleEdit}>
-                <FontAwesomeIcon icon={faPenToSquare} />
+              <BsPencilSquare />
                 edit
               </button>
               <button className="delete-button" onClick={handleDelete}>
-                <FontAwesomeIcon icon={faTrash} />
+         <FaTrashAlt/>
                 delete
               </button>
             </motion.div>}

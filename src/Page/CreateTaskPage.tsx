@@ -3,7 +3,6 @@ import "./createTaskPage.scss"
 import axios from 'axios'
 import { TextField } from '@material-ui/core';
 import {
-  Avatar,
   Button,
   FormControl,
 } from '@mui/material';

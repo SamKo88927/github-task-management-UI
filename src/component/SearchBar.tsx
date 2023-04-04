@@ -1,6 +1,4 @@
-import React, { useContext, useState } from 'react'
 import "./searchBar.scss"
-import axios from 'axios';
 interface props {
   searchBar:string;
   setSearchBar: (value: any) => void;
