@@ -2,11 +2,9 @@ import React, { Dispatch, SetStateAction, useMemo, useState } from 'react'
 import "./task.scss"
 import { motion } from "framer-motion";
 import { Button, IconButton } from '@material-ui/core';
-
-import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import axios from 'axios';
 import { makeStyles } from "@mui/styles";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import PopUpLabels from './PopUpLabels';
 import { BsPencilSquare } from 'react-icons/bs';
