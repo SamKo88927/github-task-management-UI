@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import "./header.scss"
-import {  gh_APP_ID } from '../proxy';
+import {  baseURL, gh_APP_ID } from '../proxy';
 import axios from 'axios';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import DropDownList from './DropDownList';
@@ -14,7 +14,7 @@ const Header = () => {
         // 向 Login API 獲取授權碼
         const scope = "repo%20repo:status%20repo_deployment%20public_repo"
         window.location.replace(
-            `https://github.com/login/oauth/authorize?client_id=${gh_APP_ID}&scope=${scope}&redirect_uri=${redirectUri}&state=sam88927`
+            `https://github.com/login/oauth/authorize?client_id=${gh_APP_ID}&scope=${scope}&redirect_uri=${baseURL}auth/github&state=sam88927`
         )
     };
     const { user ,dispatch } = useContext(LoginContext)
