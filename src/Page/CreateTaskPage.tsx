@@ -9,11 +9,11 @@ import {
 import RepoSearch from '../component/RepoSearch';
 const CreateTaskPage = () => {
   const [repoOptions, setRepoOptions] = useState({
-    user: "SamKo88927",
-    repo: "github-task-management-UI",
+    user: "",
+    repo: "",
     title: "",
     body: "",
-    assignees: ["SamKo88927"]
+    assignees: [""]
   });
   console.log(repoOptions.body)
   const [errorMassage, setErrorMassage] = useState("")
