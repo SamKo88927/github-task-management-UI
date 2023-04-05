@@ -1,47 +1,40 @@
-# Getting Started with Create React App
+# task management進步表
+https://docs.google.com/spreadsheets/d/1fkdjxBEZZm8MAG-aXBVqO9eqZY6JhDtNfSF-O7AUN1U/edit?usp=sharing
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+此專案為前後端分離專案
+另一個Api folder為
+https://github.com/SamKo88927/github-task-management-Api
+## UI架構說明
+介面環境參數說明
+REACT_APP_JSON_SECRET = 
+REACT_APP_BASE_URL = 
+REACT_APP_BACKEND_URL =
+REACT_APP_github_Client_ID = 
+REACT_APP_github_SECRET = 
 
-In the project directory, you can run:
+-------------------------
+REACT_APP_github_Client_ID = 
+REACT_APP_github_SECRET = 
+為授權給使專案最重要的ID並設置在內
+將用Client_ID先去github換取有期限的code字串，
+並且code字串會在Api folder那裡處理，回應回來的應為最重要的
+access_token並且使用JWT來加密，在UI與API兩端也將放置
+JWT_Secret來加密傳輸過程，
+並且有關所有的UI axios操作都將夾帶header中的
+REACT_APP_JSON_SECRET 來將access_token解密而最後取得授權得以操作
+REACT_APP_BASE_URL = 你的UI網址
+REACT_APP_BACKEND_URL = 你的API網址 供github callbackURL使用為回傳
+上述有修還未整理完成，但目前可使用大部分功能
 
-### `npm start`
+### 下列為照片說明 說明較為簡略
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![1](https://user-images.githubusercontent.com/86094956/229996495-18c7a7e7-2776-4509-97ce-0cc694fe257d.png)
+![2](https://user-images.githubusercontent.com/86094956/229996645-235f5dcf-0ebf-4660-9a07-d878db675218.png)
+![3](https://user-images.githubusercontent.com/86094956/229996659-a98e0deb-2c74-4fdf-94aa-1231cdc0861f.png)
+![4](https://user-images.githubusercontent.com/86094956/229996667-2afe8e25-ad78-49c3-bbd8-551b64b9b8ad.png)
+![5](https://user-images.githubusercontent.com/86094956/229996681-3dc09b19-a0bd-421b-9d0b-a104468bb1a6.png)
+![6](https://user-images.githubusercontent.com/86094956/229996691-c6597675-3f12-4685-bea9-5598cb41962d.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![7](https://user-images.githubusercontent.com/86094956/229996700-02e090a6-6f60-4158-9f8a-dfb21dd54fa3.png)
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# github-task-management-UI
