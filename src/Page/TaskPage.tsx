@@ -24,8 +24,6 @@ const TaskPage = () => {
   const [openEditAssigned, setOpenEditAssigned] = useState(false)
   // const [openEditLabels, setOpenEditLabels] = useState(false)
   const [content, setContent] = useState({
-    own: "own",
-    repo: "repo",
     title: "",
     body: "",
     assignees: ["SamKo88927"]

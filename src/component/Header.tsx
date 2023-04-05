@@ -14,7 +14,7 @@ const Header = () => {
         // 向 Login API 獲取授權碼
         const scope = "repo%20repo:status%20repo_deployment%20public_repo"
         window.location.replace(
-            `https://github.com/login/oauth/authorize?client_id=${gh_APP_ID}&scope=${scope}&redirect_uri=${callbackURL}auth/github&state=sam88927`
+            `https://github.com/login/oauth/authorize?client_id=${gh_APP_ID}&scope=${scope}&redirect_uri=${redirectUri}&state=sam88927`
         )
     };
     const { user ,dispatch } = useContext(LoginContext)

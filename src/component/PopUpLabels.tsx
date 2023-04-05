@@ -22,6 +22,16 @@ const PopUpLabels = ({issueUrl,setRefetchData,setOpenState}:PopUpLabelsProps) =>
     setRefetchData((item: any)=>!item)
     setOpenState(false)
   }
+  const handleCloseState = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const res = await axios.get('/auth/github/issue/deleted?url='+issueUrl, {
+        headers: {
+          'Authorization': 'Bearer ' + process.env.REACT_APP_JSON_SECRET,
+          'Content-Type': 'application/json'
+        }
+      });
+    setRefetchData((item: any)=>!item)
+    setOpenState(false)
+  }
   return (
         <motion.div
         className="popup-state"
@@ -42,7 +52,7 @@ const PopUpLabels = ({issueUrl,setRefetchData,setOpenState}:PopUpLabelsProps) =>
               <div className="sq progress" />
               In Progress
             </button>
-            <button  value="Done" className="done" onClick={handleChangeState} >
+            <button  value="Done" className="done" onClick={handleCloseState} >
               <div className="sq done" />
               Done
             </button>
