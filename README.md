@@ -38,3 +38,5 @@ REACT_APP_BACKEND_URL = 你的API網址 供github callbackURL使用為回傳
 
 ![7](https://user-images.githubusercontent.com/86094956/229996700-02e090a6-6f60-4158-9f8a-dfb21dd54fa3.png)
 
+ppt連結：
+https://www.canva.com/design/DAFZ9NPLNOE/0DbYPEP6lxKF7C2VTqEQQA/view?utm_content=DAFZ9NPLNOE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
